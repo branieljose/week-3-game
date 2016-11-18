@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Psychic Game</title>
+    <!-- <link rel="stylesheet" type="text/css" href="./assets/css/reset.css"> -->
+  
+  </head>
+
+    <body>
+     
+        <h1>The Psychic Game</h1>
+        <h3>Guess what Letter I'm Thinking of</h3> 
+      <div id="content">
+        <p>Wins: 0</p>
+        <p>Looses: 0</p>
+        <p>Guesses Left: 9</p>
+        <p>Your Guesses so far: </p>
+      </div>
+      
+      
+    <script type="text/javascript" >
+    //Options for the PC to choose from
+      var options = ["q" ,"w" , "e" , "r" , "t" , "y" , "u" , "i" , "o" , "p" , "a" , "s" , "d" , "f" , "g" , "h" , "j" , "k" , "l" , "z" , "x" , "c" , "v" , "b" , "n" , "m" ];
+  
+  //Declaring Variables
+      var guessed = ""; 
+      var wins = 0;
+      var loose = 0;
+      var guesses = 9;
+
+ function startGame() {
+                // wins = 0;
+                // loose = 0;
+                guesses = 9;
+                guessed = "";
+                computerChoice = options[Math.floor(Math.random()*options.length)];
+                return  pcChoice;
+        }
+
+
+
+
+  function random(){
+   
+  //This line is responsible of choosing one different option form the array every time a key is pressed
+ pcChoice = options[Math.floor(Math.random()*options.length)];
+ //this will show the PC's chose on the console log
+ console.log(pcChoice); 
+}
+  random();
+//Runs the code every time a key is pressed
+document.onkeyup = function(event) {
+  var key = event.key;
+   //Keeps track of the guesses
+   guessed += event.key + ", ";
+  
+      
+  //Coditions that determine if user wins or loose
+      if (key  === pcChoice){
+          wins++;
+          alert("You Won!");
+          random();
+          startGame();
+          } else if (key !== pcChoice && guesses > 0){
+            
+             guesses--;
+              
+              alert("You Loose!");
+              random();
+             
+
+       } else if (guesses === 0 ){
+        loose++;
+        alert("You Lost!");
+        random();
+        startGame();
+        
+      
+      }
+
+
+        //console logs the keys that are being hit
+          console.log(key);
+     
+        //Keeps track of the guesses
+        
+
+        //takes results and insert them on HTML
+        var html = "<p>Wins: " + wins + "</p>" + "<p>Looses: " + loose + "</p>" + "<p>Guesses Left: " + guesses + "</p>" + "<p>Your Guesses so far: " + guessed + "</p>" ;
+
+     document.querySelector("#content").innerHTML = html;
+             
+}  
+                    
+    </script>
+  </body>
+</html>
